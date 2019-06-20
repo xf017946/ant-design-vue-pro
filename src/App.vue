@@ -15,11 +15,37 @@
 </template>
 
 <script>
+// import axios from 'axios';
+import request from '@/utils/request';
+
 export default {
   data() {
     return {
       abc: 'admin'
     };
+  },
+  mounted() {
+    this.init();
+  },
+  methods: {
+    init() {
+      request({
+        url: '/api/dashboard/chart1',
+        method: 'get',
+        params: { ID: 12345 }
+      })
+        .then(res => {
+          console.log('get res', res);
+        })
+        .catch(err => {
+          alert(err);
+        });
+      // axios
+      //   .get('/api/dashboard/chart', { params: { ID: 12345 } })
+      //   .then(res => {
+      //     console.log('res', res)
+      //   })
+    }
   }
 };
 </script>
